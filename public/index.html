@@ -1,19 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Drugi Projekt</title>
-  <link rel="stylesheet" href="">
+      <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+    </style>
 </head>
 <body>
 
 <main>
-  <h1>Drugi Projekt</h1>
+    <h1>Drugi Projekt</h1>
 
+    <div class="injections">
+        <h2>SQL ubacivanje (SQL Injection)</h2>
+        <p>Upute: Primjer SQL ubacivanja (tautologija) na prijavi. U polje za korisničko ime upiši <mark>' OR 1=1 --</mark> (možeš kopirati odavde), u zaporku bilo što i klikni "Prijava". Kad je ranjivost uključena, korisnički unos dodaje se u SQL upit izravno. Time je moguće promijeniti njegovu logiku. Tautologija zaobilazi provjeru zaporke i prijava uspije. Kad je isključena, unos se tretira kao običan tekst i prijava ne uspije. Ispravni podaci za login: <mark>admin</mark> / <mark>123456</mark>.</p>
+
+        <label>
+            <input type="checkbox" id="sqli-toggle" checked> Ranjivost uključena
+        </label>
+
+        <form id="sqli-form">
+            <div class="container">
+                <label for="sqli-user"><b>Korisničko ime</b></label>
+                <input type="text" id="sqli-user" placeholder="Unesi korisničko ime" required>
+
+                <label for="sqli-pass"><b>Zaporka</b></label>
+                <input type="password" id="sqli-pass" placeholder="Unesi zaporku" required>
+
+                <button type="submit">Prijava</button>
+            </div>
+        </form>
+        <pre id="sqli-out"></pre>
+    </div>
+
+    <div class="bad-auth">
+        <h2>Loša autentifikacija (Broken Authentication)</h2>
+        <p>Upute: Primjer brute force napada na prijavu. Upiši korisničko ime <mark>admin</mark> i klikni "Pokreni brute force". Aplikacija isprobava najčešće zaporke. Kad je ranjivost uključena, nema ograničenja pokušaja pa se nakon pronalaska zaporke ispisuje broj pokušaja. Kad je isključena, broj pokušaja je ograničen: nakon 5 neuspjelih pokušaja prijava se privremeno blokira. Testni korisnici: <mark>admin</mark> / <mark>123456</mark>, <mark>ana</mark> / <mark>password</mark>, <mark>marko</mark> / <mark>qwerty</mark>.</p>
+
+        <label>
+            <input type="checkbox" id="auth-toggle" checked> Ranjivost uključena
+        </label>
+
+        <form id="auth-form">
+            <div class="container">
+                <label for="auth-user"><b>Korisničko ime</b></label>
+                <input type="text" id="auth-user" placeholder="Unesi korisničko ime" required>
+
+                <button type="submit">Pokreni brute force</button>
+            </div>
+        </form>
+        <pre id="auth-out"></pre>
+    </div>
 </main>
 
-<script src=""></script>
+<script src="script.js"></script>
 
 </body>
 </html>
