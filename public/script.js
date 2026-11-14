@@ -35,6 +35,7 @@ form_a.addEventListener("submit", async (event) => {
     out_a.textContent = "";
     let ctr = 1;
     let found = false;
+
     for (const p of passwords) {
         const res = await fetch("/api/auth/login", {
             method: "POST",
@@ -49,7 +50,14 @@ form_a.addEventListener("submit", async (event) => {
         });
 
         const data = await res.json();
+
+        if (data.alreadyBlocked) {
+            out_a.textContent += data.message + "\n";
+            found = true;
+            break;
+        }
         out_a.textContent += "Pokušaj " + ctr + ": " + p + " -> " + data.message + "\n";
+
         if (data.success) {
             out_a.textContent += "Pogođeno nakon " + (ctr) + " pokušaja\n";
             found = true;

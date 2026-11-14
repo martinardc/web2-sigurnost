@@ -16,6 +16,7 @@ router.post("/login", async (req, res) => {
             return res.status(429).json({
                 success: false,
                 blocked: true,
+                alreadyBlocked: true,
                 message: "Račun je privremeno blokiran, pokušaj za " + secondsLeft + " s"
             });
         }
